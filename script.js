@@ -1,5 +1,5 @@
 function showMessage(response) {
-  if (response === "No") {
+  if (response === "Nein") {
     const noButton = document.getElementById("no-button");
     const container = document.querySelector(".container");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
@@ -27,14 +27,14 @@ function showMessage(response) {
     // Optional: You can also add a timeout to reset the position after a few seconds
   }
 
-  if (response === "Yes") {
+  if (response === "Ja") {
     // Remove name message and no button
     document.getElementById("name").remove();
     document.getElementById("no-button").remove();
 
     // Update text content, show message, and change image source to "dance.gif"
     const yesMessage = document.getElementById("question");
-    yesMessage.textContent = "LESGOOO see you on the 14th babygirl😘😘";
+    yesMessage.textContent = "Ich freue mich schon auf unser erstes Date :)";
     yesMessage.style.display = "block";
     yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
