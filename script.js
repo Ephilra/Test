@@ -1,45 +1,51 @@
 function showMessage(response) {
-  if (response === "Nein") {
+  const r = String(response || '').trim().toLowerCase();
+
+  if (r === 'nein' || r === 'no') {
     const noButton = document.getElementById("no-button");
-    const container = document.querySelector(".container");
     const maxWidth = window.innerWidth - noButton.offsetWidth;
     const maxHeight = window.innerHeight - noButton.offsetHeight;
 
-    // Set button position to absolute
     noButton.style.position = "absolute";
-
-    // Change image source to "gun.gif"
     document.getElementsByClassName("image")[0].src = "images/gun.gif";
 
-    // Generate random coordinates within the visible container
     const randomX = Math.max(0, Math.floor(Math.random() * maxWidth));
     const randomY = Math.max(0, Math.floor(Math.random() * maxHeight));
-
-    // Apply new coordinates to the button
     noButton.style.left = randomX + "px";
     noButton.style.top = randomY + "px";
 
-    // Update text content and hide name message
+    // Dein Text:
     document.getElementById("question").textContent =
-      "Nice Try! Aber der Nein Button dient nur als visueller Effekt";
-    document.getElementById("name").style.display = "none";
+      "Nice Try! Aber der Nein-Button ist nur ein visueller Effekt 😉";
 
-    // Optional: You can also add a timeout to reset the position after a few seconds
+    // Falls hidden-messages existieren: ausblenden
+    const noMsg = document.getElementById("no-message");
+    if (noMsg) noMsg.style.display = "none";
+    const yesMsg = document.getElementById("yes-message");
+    if (yesMsg) yesMsg.style.display = "none";
+
+    const nameEl = document.getElementById("name");
+    if (nameEl) nameEl.style.display = "none";
   }
 
-  if (response === "Ja") {
-    // Remove name message and no button
-    document.getElementById("name").remove();
-    document.getElementById("no-button").remove();
+  if (r === 'ja' || r === 'yes') {
+    const nameEl = document.getElementById("name");
+    if (nameEl) nameEl.remove();
+    const noBtn = document.getElementById("no-button");
+    if (noBtn) noBtn.remove();
 
-    // Update text content, show message, and change image source to "dance.gif"
     const yesMessage = document.getElementById("question");
     yesMessage.textContent = "Ich freue mich schon auf unser erstes Date :)";
     yesMessage.style.display = "block";
     yesMessage.style.fontStyle = "normal";
     document.getElementsByClassName("image")[0].src = "images/dance.gif";
 
-    // Remove yes button
-    document.getElementById("yesButton").remove();
+    const yesBtn = document.getElementById("yesButton");
+    if (yesBtn) yesBtn.remove();
+
+    const noMsg = document.getElementById("no-message");
+    if (noMsg) noMsg.style.display = "none";
+    const yesMsg = document.getElementById("yes-message");
+    if (yesMsg) yesMsg.style.display = "none";
   }
 }
